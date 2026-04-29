@@ -40,7 +40,7 @@ const Index = () => {
   };
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center px-4 py-10 scanlines overflow-hidden">
+    <main className="relative min-h-screen flex items-center justify-center px-3 sm:px-4 py-6 sm:py-10 scanlines overflow-hidden">
       {step === 0 && <EntryScreen onEnter={() => setStep(1)} />}
       {step === 1 && (
         <IdentityStep data={data} update={update} onBack={() => setStep(0)} onNext={() => setStep(2)} />

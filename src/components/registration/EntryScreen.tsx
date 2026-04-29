@@ -50,7 +50,7 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => {
         </div>
 
         {/* Center monumental title */}
-        <div className="md:col-span-6 text-center order-1 md:order-2">
+        <div className="md:col-span-6 text-center order-1 md:order-2 min-w-0">
           <div className="text-[10px] md:text-xs uppercase tracking-[0.6em] text-muted-foreground mb-6 animate-flicker">
             Eventora × Versova Vibes
           </div>
@@ -59,20 +59,25 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => {
             <div className="text-2xl md:text-3xl italic font-light text-muted-foreground -mb-2 md:-mb-3">— the —</div>
 
             {/* Massive layered title */}
-            <div className="relative inline-block">
+            <div className="relative w-full">
               <h1
                 aria-hidden
-                className="absolute inset-0 text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px]"
+                className="absolute inset-0 text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px] font-black tracking-tighter leading-[0.85]"
+                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
               >
                 AFTERDARK
               </h1>
               <h1
                 aria-hidden
-                className="absolute inset-0 text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-primary/60 select-none -translate-x-[6px] -translate-y-[3px]"
+                className="absolute inset-0 text-primary/60 select-none -translate-x-[6px] -translate-y-[3px] font-black tracking-tighter leading-[0.85]"
+                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
               >
                 AFTERDARK
               </h1>
-              <h1 className="relative text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-foreground animate-glitch">
+              <h1
+                className="relative text-foreground animate-glitch font-black tracking-tighter leading-[0.85]"
+                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
+              >
                 AFTERDARK
               </h1>
             </div>

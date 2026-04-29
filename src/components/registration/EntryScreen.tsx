@@ -62,17 +62,17 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => {
             <div className="relative inline-block">
               <h1
                 aria-hidden
-                className="absolute inset-0 text-[18vw] md:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px]"
+                className="absolute inset-0 text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px]"
               >
                 AFTERDARK
               </h1>
               <h1
                 aria-hidden
-                className="absolute inset-0 text-[18vw] md:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter text-primary/60 select-none -translate-x-[6px] -translate-y-[3px]"
+                className="absolute inset-0 text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-primary/60 select-none -translate-x-[6px] -translate-y-[3px]"
               >
                 AFTERDARK
               </h1>
-              <h1 className="relative text-[18vw] md:text-[7rem] xl:text-[8.5rem] font-black tracking-tighter text-foreground animate-glitch">
+              <h1 className="relative text-[18vw] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[7.5rem] font-black tracking-tighter text-foreground animate-glitch">
                 AFTERDARK
               </h1>
             </div>

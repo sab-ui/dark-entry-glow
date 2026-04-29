@@ -63,20 +63,20 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => {
               <h1
                 aria-hidden
                 className="absolute inset-0 text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px] font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
+                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
               >
                 AFTERDARK
               </h1>
               <h1
                 aria-hidden
                 className="absolute inset-0 text-primary/60 select-none -translate-x-[6px] -translate-y-[3px] font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
+                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
               >
                 AFTERDARK
               </h1>
               <h1
                 className="relative text-foreground animate-glitch font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(3rem, 13vw, 7.5rem)" }}
+                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
               >
                 AFTERDARK
               </h1>

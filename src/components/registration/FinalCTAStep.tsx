@@ -1,7 +1,7 @@
 import { StepShell } from "./StepShell";
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle, Instagram } from "lucide-react";
-import { WHATSAPP_NUMBER, PHONE_DISPLAY, INSTAGRAM_HANDLE, RegistrationData } from "@/lib/registration-types";
+import { Phone, MessageCircle } from "lucide-react";
+import { WHATSAPP_NUMBER, PHONE_DISPLAY, RegistrationData } from "@/lib/registration-types";
 
 interface Props {
   data: RegistrationData;
@@ -32,18 +32,8 @@ export const FinalCTAStep = ({ data, onBack }: Props) => {
             <Phone className="w-5 h-5 mr-2 text-secondary" /> Call {PHONE_DISPLAY}
           </Button>
         </a>
-        <a href={`https://instagram.com/${INSTAGRAM_HANDLE}`} target="_blank" rel="noreferrer">
-          <Button size="lg" variant="outline" className="w-full border-accent/60 bg-transparent hover:bg-accent/10 h-14 text-base">
-            <Instagram className="w-5 h-5 mr-2 text-accent" /> Instagram DM
-          </Button>
-        </a>
       </div>
 
-      <div className="text-center mt-8">
-        <a href="/admin" className="text-xs text-muted-foreground/60 tracking-widest hover:text-primary transition-smooth">
-          ADMIN
-        </a>
-      </div>
     </StepShell>
   );
 };

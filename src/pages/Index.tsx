@@ -15,12 +15,15 @@ const Index = () => {
   const [step, setStep] = useState(0); // 0 = entry; 1-7 = steps
   const [data, setData] = useState<RegistrationData>(initialData);
   const [submitting, setSubmitting] = useState(false);
+  const [registrationId, setRegistrationId] = useState<string>("");
 
   const update = (p: Partial<RegistrationData>) => setData((d) => ({ ...d, ...p }));
 
   const submit = async () => {
     setSubmitting(true);
+    const id = crypto.randomUUID();
     const { error } = await supabase.from("registrations").insert({
+      id,
       name: data.name.trim(),
       phone: data.phone.trim(),
       instagram: data.instagram.trim() || null,
@@ -35,6 +38,7 @@ const Index = () => {
       toast.error("Something went wrong. Try again?");
       return;
     }
+    setRegistrationId(id);
     toast.success("Welcome to the dark side 🖤");
     setStep(7);
   };
@@ -60,7 +64,7 @@ const Index = () => {
       {step === 6 && (
         <EventDetailsStep onBack={() => setStep(5)} onNext={submit} />
       )}
-      {step === 7 && <FinalCTAStep data={data} onBack={() => setStep(6)} />}
+      {step === 7 && <FinalCTAStep data={data} registrationId={registrationId} onBack={() => setStep(6)} />}
 
       {submitting && (
         <div className="fixed inset-0 bg-background/80 backdrop-blur-sm grid place-items-center z-50">

@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import { Download, LogOut, Search, Trash2, Check, Users, User, UsersRound, Sparkles } from "lucide-react";
+import { Download, LogOut, Search, Trash2, Check, Users, User, UsersRound, Sparkles, ScanLine } from "lucide-react";
+import { TicketScanner } from "@/components/admin/TicketScanner";
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from "@/components/ui/table";
@@ -25,6 +26,7 @@ const AdminDashboard = () => {
   const [q, setQ] = useState("");
   const [filter, setFilter] = useState<"all" | "Solo" | "Couple" | "Group" | "girls">("all");
   const [busy, setBusy] = useState(true);
+  const [scanning, setScanning] = useState(false);
 
   useEffect(() => {
     if (loading) return;
@@ -114,12 +116,16 @@ const AdminDashboard = () => {
 
   return (
     <main className="min-h-screen px-4 md:px-8 py-8">
+      {scanning && <TicketScanner onClose={() => { setScanning(false); load(); }} />}
       <header className="flex flex-wrap items-center justify-between gap-4 mb-8">
         <div>
           <h1 className="text-3xl md:text-4xl font-bold text-glow-pink">Afterdark Control</h1>
           <p className="text-sm text-muted-foreground mt-1">Manage every soul on the list.</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap">
+          <Button onClick={() => setScanning(true)} variant="outline" className="border-primary/40 text-primary hover:bg-primary/10">
+            <ScanLine className="w-4 h-4 mr-2" /> Scan Ticket
+          </Button>
           <Button onClick={exportCSV} className="bg-gradient-neon text-primary-foreground border-0 shadow-neon-pink">
             <Download className="w-4 h-4 mr-2" /> Export CSV
           </Button>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -6,12 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useAuth } from "@/hooks/useAuth";
-import { useEffect } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 const AdminAuth = () => {
-  const [mode, setMode] = useState<"login" | "signup">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { session, isAdmin } = useAuth();
@@ -23,18 +23,9 @@ const AdminAuth = () => {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    if (mode === "login") {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) toast.error(error.message);
-      else toast.success("Signed in");
-    } else {
-      const { error } = await supabase.auth.signUp({
-        email, password,
-        options: { emailRedirectTo: `${window.location.origin}/admin` },
-      });
-      if (error) toast.error(error.message);
-      else toast.success("Account created. Ask an existing admin to grant you the admin role.");
-    }
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) toast.error(error.message);
+    else toast.success("Signed in");
     setLoading(false);
   };
 
@@ -51,17 +42,29 @@ const AdminAuth = () => {
           </div>
           <div>
             <Label className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Password</Label>
-            <Input type="password" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} className="bg-input border-border h-11 mt-1" />
+            <div className="relative mt-1">
+              <Input
+                type={showPassword ? "text" : "password"}
+                required
+                minLength={6}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="bg-input border-border h-11 pr-11"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((v) => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-smooth"
+              >
+                {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+              </button>
+            </div>
           </div>
         </div>
 
         <Button type="submit" disabled={loading} className="w-full mt-6 bg-gradient-neon text-primary-foreground border-0 shadow-neon-pink h-11">
-          {loading ? "..." : mode === "login" ? "Sign In" : "Create Account"}
+          {loading ? "..." : "Sign In"}
         </Button>
-
-        <button type="button" onClick={() => setMode(mode === "login" ? "signup" : "login")} className="text-xs text-muted-foreground hover:text-primary mt-4 w-full text-center transition-smooth">
-          {mode === "login" ? "Need an account?" : "Have an account? Sign in"}
-        </button>
       </form>
     </main>
   );

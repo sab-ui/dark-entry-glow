@@ -35,7 +35,7 @@ export const StepShell = ({
         </div>
       </div>
 
-      <h2 className="text-4xl md:text-5xl font-bold text-glow-pink mb-2">{title}</h2>
+      <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-glow-pink mb-2 leading-tight break-words">{title}</h2>
       {subtitle && <p className="text-muted-foreground mb-8 italic">{subtitle}</p>}
       {!subtitle && <div className="mb-8" />}
 

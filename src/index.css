@@ -120,6 +120,11 @@
   100% { background-position: 0 100%; }
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 @layer utilities {
   .animate-glitch { animation: glitch 4s infinite; }
   .animate-flicker { animation: flicker 6s infinite; }
@@ -137,6 +142,9 @@
       hsl(0 0% 100% / 0.02) 4px
     );
     pointer-events: none;
+  }
+  .clip-ticket {
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
   }
 }
 

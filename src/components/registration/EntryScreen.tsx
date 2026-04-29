@@ -1,161 +1,170 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 
-export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => {
-  return (
-    <div className="relative w-full max-w-6xl mx-auto py-10 md:py-16">
-      {/* Ambient glow blobs */}
-      <div className="pointer-events-none absolute -top-32 -left-20 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-32 -right-20 w-[480px] h-[480px] rounded-full bg-secondary/25 blur-[140px]" />
-      <div className="pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full bg-accent/10 blur-[100px]" />
+const HERO_IMG = "/hero-bg.png";
 
-      {/* Top marquee */}
-      <div className="relative overflow-hidden border-y border-primary/30 py-3 mb-12 bg-background/40 backdrop-blur-sm">
-        <div className="flex gap-12 whitespace-nowrap animate-[scroll_30s_linear_infinite] text-xs uppercase tracking-[0.4em]">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="flex items-center gap-12 shrink-0">
-              <span className="text-primary text-glow-pink">★ Afterdark Affair 1.0</span>
-              <span className="text-muted-foreground">8 May · 8 PM</span>
-              <span className="text-secondary text-glow-purple">★ Versova Vibes Cafe</span>
-              <span className="text-muted-foreground">Andheri West</span>
-              <span className="text-accent">★ Unlimited Shots</span>
-            </div>
-          ))}
+export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
+  <div className="relative w-full min-h-screen bg-black overflow-hidden">
+
+    {/* ─── Full-bleed hero image ─── */}
+    <div className="absolute inset-0">
+      <img
+        src={HERO_IMG}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{ filter: "saturate(1.1) brightness(0.85)", objectPosition: "72% 20%" }}
+      />
+      {/* left dark gradient so text is readable, fades out at ~50% so face shows right */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #000 0%, #000 30%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.1) 65%, transparent 80%)" }} />
+      {/* bottom gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      {/* subtle top gradient for nav readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+    </div>
+
+    {/* grain */}
+    <div className="grain pointer-events-none fixed inset-0 z-[1]" />
+
+    {/* ─── Navigation ─── */}
+    <nav className="relative z-20 flex items-center justify-between px-6 sm:px-10 pt-5 pb-3">
+      {/* Logo */}
+      <div className="flex items-center gap-2">
+        <span className="font-black text-xl sm:text-2xl text-primary leading-none"
+          style={{ textShadow: "0 0 20px hsl(335 100% 50% / 0.9), 0 0 40px hsl(335 100% 50% / 0.4)" }}>
+          ✦ A
+        </span>
+        <div className="hidden sm:block">
+          <div className="text-[8px] uppercase tracking-[0.5em] text-white/30 leading-tight">Afterdark</div>
+          <div className="text-[8px] uppercase tracking-[0.5em] text-white/20 leading-tight">Affair</div>
         </div>
       </div>
 
-      <div className="relative grid md:grid-cols-12 gap-8 px-4 md:px-8 items-center">
-        {/* Left meta column */}
-        <div className="md:col-span-3 md:pr-4 space-y-8 order-2 md:order-1">
-          <div className="hidden md:block">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mb-2">Vol. 01</div>
-            <div className="h-px w-12 bg-primary mb-2" />
-            <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground">No. 0085</div>
-          </div>
-
-          <div className="space-y-2">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-primary text-glow-pink">Featuring</div>
-            <ul className="space-y-1 text-sm font-bold uppercase tracking-wider">
-              <li className="text-foreground">DJ Night</li>
-              <li className="text-secondary">Face Art</li>
-              <li className="text-foreground">Alter Egos</li>
-              <li className="text-accent">Dark Vibes</li>
-            </ul>
-          </div>
-
-          <div className="hidden md:block glass border border-accent/40 rounded-lg p-4 shadow-neon-yellow">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-accent mb-1">Girls</div>
-            <div className="text-sm font-bold leading-tight">Unlimited shots — first 2 hours.</div>
-          </div>
-        </div>
-
-        {/* Center monumental title */}
-        <div className="md:col-span-6 text-center order-1 md:order-2 min-w-0">
-          <div className="text-[10px] md:text-xs uppercase tracking-[0.6em] text-muted-foreground mb-6 animate-flicker">
-            Eventora × Versova Vibes
-          </div>
-
-          <div className="relative leading-[0.85]">
-            <div className="text-2xl md:text-3xl italic font-light text-muted-foreground -mb-2 md:-mb-3">— the —</div>
-
-            {/* Massive layered title */}
-            <div className="relative w-full">
-              <h1
-                aria-hidden
-                className="absolute inset-0 text-secondary/40 select-none translate-x-[6px] translate-y-[3px] blur-[1px] font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
-              >
-                AFTERDARK
-              </h1>
-              <h1
-                aria-hidden
-                className="absolute inset-0 text-primary/60 select-none -translate-x-[6px] -translate-y-[3px] font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
-              >
-                AFTERDARK
-              </h1>
-              <h1
-                className="relative text-foreground animate-glitch font-black tracking-tighter leading-[0.85]"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}
-              >
-                AFTERDARK
-              </h1>
-            </div>
-
-            <div className="relative -mt-2 md:-mt-4">
-              <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-60" />
-              <h2 className="relative inline-block px-6 bg-background text-5xl md:text-7xl font-black tracking-[0.05em] text-gradient-neon italic">
-                Affair
-              </h2>
-            </div>
-
-            <div className="flex items-center justify-center gap-3 mt-6">
-              <span className="h-px w-10 bg-primary" />
-              <span className="text-sm font-bold tracking-[0.4em] text-primary text-glow-pink">VOL · 1.0</span>
-              <span className="h-px w-10 bg-primary" />
-            </div>
-          </div>
-
-          <p className="text-base md:text-lg italic text-muted-foreground mt-8 max-w-md mx-auto">
-            Where the <span className="text-primary font-bold not-italic text-glow-pink">strange</span> meets the <span className="text-secondary font-bold not-italic text-glow-purple">wild</span> 🖤
-          </p>
-
-          {/* CTA */}
-          <div className="mt-10 inline-flex flex-col items-center gap-3">
-            <Button
-              size="lg"
-              onClick={onEnter}
-              className="group relative bg-gradient-neon text-primary-foreground border-0 shadow-neon-pink animate-pulse-glow text-base md:text-lg px-10 py-7 uppercase tracking-[0.3em] font-bold rounded-none clip-ticket"
-            >
-              <span className="relative z-10 flex items-center">
-                Enter if you dare
-                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </Button>
-            <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground/70">
-              Strictly by reservation
-            </div>
-          </div>
-        </div>
-
-        {/* Right ticket column */}
-        <div className="md:col-span-3 md:pl-4 order-3 space-y-4">
-          <div className="glass border border-primary/30 rounded-lg p-5 shadow-card relative overflow-hidden">
-            <div className="absolute top-0 right-0 text-[80px] font-black text-primary/10 leading-none -mt-3 -mr-2 select-none">08</div>
-            <div className="relative">
-              <div className="text-[10px] uppercase tracking-[0.4em] text-primary mb-1">When</div>
-              <div className="font-black text-2xl">8 May</div>
-              <div className="text-sm text-muted-foreground mt-1">Thursday · 8:00 PM</div>
-            </div>
-          </div>
-
-          <div className="glass border border-secondary/30 rounded-lg p-5 shadow-card">
-            <div className="text-[10px] uppercase tracking-[0.4em] text-secondary mb-1">Where</div>
-            <div className="font-black text-lg leading-tight">Versova Vibes Cafe</div>
-            <div className="text-sm text-muted-foreground mt-1">Andheri West, Mumbai</div>
-          </div>
-
-          <div className="hidden md:flex justify-between items-center pt-2 px-1">
-            <div className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">Pass</div>
-            <div className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">001/∞</div>
-          </div>
-        </div>
+      {/* Links – desktop */}
+      <div className="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-[0.35em] font-semibold">
+        <span className="text-primary border-b border-primary/70 pb-0.5 cursor-pointer"
+          style={{ textShadow: "0 0 10px hsl(335 100% 50% / 0.6)" }}>Home</span>
+        {["Event", "Experience", "Details"].map(l => (
+          <span key={l} className="text-white/40 hover:text-white/80 cursor-pointer transition-colors duration-200">{l}</span>
+        ))}
       </div>
 
-      {/* Bottom triple-ribbon */}
-      <div className="relative mt-16 grid grid-cols-3 gap-px bg-border">
+      {/* Register Now – desktop */}
+      <button onClick={onEnter}
+        className="hidden md:block text-[10px] uppercase tracking-[0.4em] font-black text-white px-5 py-2.5 border border-primary/70 hover:bg-primary/10 hover:border-primary transition-all duration-300"
+        style={{ boxShadow: "0 0 20px hsl(335 100% 50% / 0.25)" }}>
+        Register Now
+      </button>
+
+      {/* Hamburger – mobile */}
+      <Menu className="md:hidden w-5 h-5 text-white/60" />
+    </nav>
+
+    {/* ─── Hero content ─── */}
+    <div className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-160px)] px-6 sm:px-10 md:px-16 pb-16 max-w-[640px]">
+
+      {/* Tagline */}
+      <p className="text-[9px] sm:text-[10px] uppercase tracking-[0.55em] text-white/55 mb-5 font-semibold">
+        Where the{" "}
+        <span className="text-primary" style={{ textShadow: "0 0 10px hsl(335 100% 50% / 0.7)" }}>Strange</span>
+        {" "}meets the{" "}
+        <span className="text-secondary" style={{ textShadow: "0 0 10px hsl(272 100% 55% / 0.7)" }}>Wild</span>
+        {" "}♡
+      </p>
+
+      {/* SVG filter for rough text edges */}
+      <svg style={{ position: "absolute", width: 0, height: 0 }} aria-hidden>
+        <defs>
+          <filter id="rough">
+            <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" seed="8" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.5" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* "The" – handwritten */}
+      <div className="font-marker text-white/90 -mb-3 sm:-mb-5 leading-none"
+        style={{ fontSize: "clamp(1.8rem, 5vw, 3.5rem)" }}>
+        The
+      </div>
+
+      {/* AFTERDARK – massive pink rough */}
+      <h1 className="font-black text-primary leading-[0.88] tracking-tight"
+        style={{
+          fontSize: "clamp(4rem, 17vw, 12rem)",
+          filter: "url(#rough)",
+          textShadow: "0 0 40px hsl(335 100% 50% / 0.8), 0 0 80px hsl(335 100% 50% / 0.3), 4px 4px 0 hsl(335 100% 28%)",
+        }}>
+        AFTERDARK
+      </h1>
+
+      {/* AFFAIR 1.0 */}
+      <div className="flex items-baseline gap-3 sm:gap-5 -mt-1 sm:-mt-3">
+        <h2 className="font-black italic text-white leading-none tracking-tight"
+          style={{
+            fontSize: "clamp(2.8rem, 11vw, 8.5rem)",
+            textShadow: "3px 3px 0 rgba(0,0,0,0.6), 0 0 40px rgba(255,255,255,0.05)"
+          }}>
+          AFFAIR
+        </h2>
+        <span className="font-black text-primary leading-none"
+          style={{
+            fontSize: "clamp(1.8rem, 7vw, 5.5rem)",
+            textShadow: "0 0 20px hsl(335 100% 50% / 0.9)"
+          }}>
+          1.0
+        </span>
+      </div>
+
+      {/* ─── Feature icons ─── */}
+      <div className="flex items-stretch mt-7 sm:mt-9 border-t border-b border-white/10 py-3.5">
         {[
-          { label: "Masks On", color: "text-primary" },
-          { label: "Vibes Loud", color: "text-secondary" },
-          { label: "Egos Off", color: "text-accent" },
-        ].map((x) => (
-          <div key={x.label} className="bg-background py-4 text-center">
-            <span className={`text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold ${x.color}`}>
-              {x.label}
-            </span>
+          { icon: "🎧", label: "DJ Night" },
+          { icon: "🎭", label: "Face Art" },
+          { icon: "🎪", label: "Alter Egos" },
+          { icon: "⚡", label: "Dark Vibes" },
+        ].map(({ icon, label }, i) => (
+          <div key={label} className="flex-1 flex flex-col items-center gap-1.5 relative">
+            {i > 0 && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-6 bg-white/10" />}
+            <span className="text-lg sm:text-xl" style={{ filter: "grayscale(0.3)" }}>{icon}</span>
+            <span className="text-[7px] sm:text-[8px] uppercase tracking-[0.3em] text-white/40 font-bold text-center">{label}</span>
           </div>
         ))}
       </div>
+
+      {/* ─── CTA ─── */}
+      <div className="mt-7 sm:mt-9 flex flex-col items-start gap-0">
+        <button onClick={onEnter}
+          className="group relative w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 bg-black/50 text-white font-black text-sm sm:text-base uppercase tracking-[0.4em] border border-primary/80 hover:bg-primary/10 transition-all duration-300"
+          style={{ boxShadow: "0 0 25px hsl(335 100% 50% / 0.35), 0 0 60px hsl(335 100% 50% / 0.15), inset 0 0 20px hsl(335 100% 50% / 0.05)" }}>
+          Enter if you dare
+        </button>
+
+        {/* drip drops */}
+        <div className="flex gap-2.5 ml-10">
+          {[10, 16, 8, 13, 7, 11].map((h, i) => (
+            <div key={i} className="w-[2px] rounded-b-full"
+              style={{ height: h, background: "hsl(335 100% 50%)", boxShadow: "0 0 6px hsl(335 100% 50% / 0.8)", opacity: 0.7 - i * 0.05 }} />
+          ))}
+        </div>
+
+        <p className="mt-3 text-[8px] sm:text-[9px] uppercase tracking-[0.55em] text-white/25">Step into your alter ego</p>
+        <ChevronDown className="w-4 h-4 text-primary/40 mt-2 animate-bounce" />
+      </div>
     </div>
-  );
-};
+
+    {/* ─── Bottom info bar ─── */}
+    <div className="absolute bottom-0 inset-x-0 z-10 border-t border-white/[0.07] bg-black/75 backdrop-blur-sm">
+      <div className="flex flex-col sm:flex-row divide-y sm:divide-y-0 sm:divide-x divide-white/[0.07]">
+        {[["📅", "8 May"], ["🕗", "8:00 PM Onwards"], ["📍", "Versova Vibes Cafe, Andheri West"]].map(([icon, text]) => (
+          <div key={text} className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5">
+            <span className="text-sm">{icon}</span>
+            <span className="text-[10px] sm:text-xs text-white/50 font-medium tracking-wide">{text}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-white/[0.05] py-1.5 text-center">
+        <span className="text-[9px] tracking-[0.4em] text-primary/50 uppercase">For Reservations: </span>
+        <span className="text-[9px] text-white/35 font-mono">+91 96121 80626</span>
+      </div>
+    </div>
+  </div>
+);

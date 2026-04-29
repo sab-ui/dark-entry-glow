@@ -44,26 +44,14 @@ const Index = () => {
   };
 
   return (
-    <main className="relative min-h-screen flex items-center justify-center px-3 sm:px-4 py-6 sm:py-10 scanlines overflow-hidden">
+    <main className="relative bg-background overflow-x-hidden">
       {step === 0 && <EntryScreen onEnter={() => setStep(1)} />}
-      {step === 1 && (
-        <IdentityStep data={data} update={update} onBack={() => setStep(0)} onNext={() => setStep(2)} />
-      )}
-      {step === 2 && (
-        <VibeStep data={data} update={update} onBack={() => setStep(1)} onNext={() => setStep(3)} />
-      )}
-      {step === 3 && (
-        <FaceArtStep data={data} update={update} onBack={() => setStep(2)} onNext={() => setStep(4)} />
-      )}
-      {step === 4 && (
-        <EntryTypeStep data={data} update={update} onBack={() => setStep(3)} onNext={() => setStep(5)} />
-      )}
-      {step === 5 && (
-        <GirlsOfferStep data={data} update={update} onBack={() => setStep(4)} onNext={() => setStep(6)} />
-      )}
-      {step === 6 && (
-        <EventDetailsStep onBack={() => setStep(5)} onNext={submit} />
-      )}
+      {step === 1 && <IdentityStep data={data} update={update} onBack={() => setStep(0)} onNext={() => setStep(2)} />}
+      {step === 2 && <VibeStep data={data} update={update} onBack={() => setStep(1)} onNext={() => setStep(3)} />}
+      {step === 3 && <FaceArtStep data={data} update={update} onBack={() => setStep(2)} onNext={() => setStep(4)} />}
+      {step === 4 && <EntryTypeStep data={data} update={update} onBack={() => setStep(3)} onNext={() => setStep(5)} />}
+      {step === 5 && <GirlsOfferStep data={data} update={update} onBack={() => setStep(4)} onNext={() => setStep(6)} />}
+      {step === 6 && <EventDetailsStep onBack={() => setStep(5)} onNext={submit} />}
       {step === 7 && <FinalCTAStep data={data} registrationId={registrationId} onBack={() => setStep(6)} />}
 
       {submitting && (

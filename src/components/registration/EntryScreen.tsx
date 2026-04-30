@@ -40,7 +40,7 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
 
       {/* Partner logos – centre of nav */}
       <div className="flex flex-col items-center gap-1">
-        <span className="text-[7px] uppercase tracking-[0.5em] text-white/35">Presented by</span>
+        <span className="text-[11px] sm:text-xs uppercase tracking-[0.4em] text-white/70 font-black text-center">Presented by</span>
         <div className="flex items-center gap-4 sm:gap-6">
           {/* Eventora – white bg so navy/gold shows */}
           <div className="bg-white rounded px-3 py-2 flex items-center"

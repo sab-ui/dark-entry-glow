@@ -38,14 +38,7 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
         </div>
       </div>
 
-      {/* Links – desktop */}
-      <div className="hidden md:flex items-center gap-8 text-[10px] uppercase tracking-[0.35em] font-semibold">
-        <span className="text-primary border-b border-primary/70 pb-0.5 cursor-pointer"
-          style={{ textShadow: "0 0 10px hsl(335 100% 50% / 0.6)" }}>Home</span>
-        {["Event", "Experience", "Details"].map(l => (
-          <span key={l} className="text-white/40 hover:text-white/80 cursor-pointer transition-colors duration-200">{l}</span>
-        ))}
-      </div>
+      <div />
 
       {/* Register Now – desktop */}
       <button onClick={onEnter}

@@ -39,17 +39,20 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
       </div>
 
       {/* Partner logos – centre of nav */}
-      <div className="flex items-center gap-4 sm:gap-6">
-        <span className="hidden sm:block text-[7px] uppercase tracking-[0.4em] text-white/40">Presented by</span>
-        <div className="w-px h-5 bg-white/10 hidden sm:block" />
-        {/* Eventora – white pill so navy/gold colors show */}
-        <div className="bg-white rounded-sm px-2.5 py-1.5 flex items-center">
-          <img src="/logo-eventora.png" alt="Eventora" className="h-7 sm:h-8 w-auto object-contain" />
+      <div className="flex flex-col items-center gap-1">
+        <span className="text-[7px] uppercase tracking-[0.5em] text-white/35">Presented by</span>
+        <div className="flex items-center gap-4 sm:gap-6">
+          {/* Eventora – white bg so navy/gold shows */}
+          <div className="bg-white rounded px-3 py-2 flex items-center"
+            style={{ boxShadow: "0 0 20px rgba(255,255,255,0.15)" }}>
+            <img src="/logo-eventora.png" alt="Eventora" className="h-10 sm:h-12 w-auto object-contain" />
+          </div>
+          <div className="w-px h-8 bg-white/15" />
+          {/* Versova Vibes */}
+          <img src="/logo-versova.jpg" alt="Versova Vibes Cafe"
+            className="h-14 sm:h-16 w-auto object-contain rounded"
+            style={{ boxShadow: "0 0 20px rgba(255,255,255,0.1)" }} />
         </div>
-        <div className="w-px h-5 bg-white/10" />
-        {/* Versova Vibes – black bg with white logo */}
-        <img src="/logo-versova.jpg" alt="Versova Vibes Cafe"
-          className="h-9 sm:h-11 w-auto object-contain rounded-sm" />
       </div>
 
       {/* Register Now – desktop */}

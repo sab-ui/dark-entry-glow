@@ -17,7 +17,7 @@ interface Props {
 export const EntryTypeStep = ({ data, update, onNext, onBack }: Props) => {
   const valid = !!data.entryType && (data.entryType !== "Group" || data.groupSize >= 3);
   return (
-    <StepShell step={4} total={7} title="How you rolling?" onBack={onBack} onNext={onNext} nextDisabled={!valid}>
+    <StepShell step={4} total={8} title="How you rolling?" onBack={onBack} onNext={onNext} nextDisabled={!valid}>
       <div className="grid grid-cols-3 gap-2 mb-4">
         {types.map(({ name, emoji, sub, color }) => {
           const active = data.entryType === name;

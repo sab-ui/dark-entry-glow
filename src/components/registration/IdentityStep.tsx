@@ -9,7 +9,7 @@ interface Props {
 export const IdentityStep = ({ data, update, onNext, onBack }: Props) => {
   const valid = data.name.trim().length >= 2 && data.phone.trim().length >= 7;
   return (
-    <StepShell step={1} total={7} title="Who's slipping in?" subtitle="Your name. Or your alter ego." onBack={onBack} onNext={onNext} nextDisabled={!valid}>
+    <StepShell step={1} total={8} title="Who's slipping in?" subtitle="Your name. Or your alter ego." onBack={onBack} onNext={onNext} nextDisabled={!valid}>
       <div className="space-y-3">
         {[
           { key: "name", label: "Name / Alter Ego", placeholder: "Your shadow self", type: "text", mode: undefined as any, max: 80, val: data.name },

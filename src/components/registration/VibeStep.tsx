@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const VibeStep = ({ data, update, onNext, onBack }: Props) => (
-  <StepShell step={2} total={7} title="Set the vibe." subtitle="Pick the energy you're walking in with." onBack={onBack} onNext={onNext} nextDisabled={!data.vibe}>
+  <StepShell step={2} total={8} title="Set the vibe." subtitle="Pick the energy you're walking in with." onBack={onBack} onNext={onNext} nextDisabled={!data.vibe}>
     <div className="grid grid-cols-2 gap-2.5">
       {vibes.map(({ name, emoji, tag, color, activeStyle }) => {
         const active = data.vibe === name;

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { StepShell } from "./StepShell";
-import { RegistrationData } from "@/lib/registration-types";
+import { RegistrationData, getEntryLabel, getEntryFee } from "@/lib/registration-types";
 import { QRCodeSVG } from "qrcode.react";
 import html2canvas from "html2canvas";
 import { Download } from "lucide-react";
@@ -29,10 +29,11 @@ export const FinalCTAStep = ({ data, registrationId, onBack }: Props) => {
   };
 
   const qrValue = `afterdark:${registrationId}`;
-  const entryLabel = data.entryType === "Group" ? `Group · ${data.groupSize}` : data.entryType;
+  const entryLabel = getEntryLabel(data);
+  const fee = getEntryFee(data);
 
   return (
-    <StepShell step={7} total={7} title="Welcome to the dark side 🖤" subtitle={`See you on 8 May, ${data.name || "stranger"}.`} onBack={onBack} hideNav>
+    <StepShell step={7} total={8} title="Welcome to the dark side 🖤" subtitle={`See you on 8 May, ${data.name || "stranger"}.`} onBack={onBack} hideNav>
       <div className="flex flex-col items-center gap-6">
 
         {/* Ticket */}
@@ -51,9 +52,9 @@ export const FinalCTAStep = ({ data, registrationId, onBack }: Props) => {
             <div className="flex gap-2 mt-3 flex-wrap">
               <span className="text-[10px] uppercase tracking-widest bg-primary/15 text-primary border border-primary/30 rounded px-2 py-0.5">{entryLabel}</span>
               <span className="text-[10px] uppercase tracking-widest bg-secondary/15 text-secondary border border-secondary/30 rounded px-2 py-0.5">{data.vibe}</span>
-              {data.girlsOffer && (
-                <span className="text-[10px] uppercase tracking-widest bg-accent/15 text-accent border border-accent/30 rounded px-2 py-0.5">Girls Offer</span>
-              )}
+              <span className="text-[10px] uppercase tracking-widest bg-accent/15 text-accent border border-accent/30 rounded px-2 py-0.5">
+                {fee.free ? "Free Entry 🥂" : fee.label}
+              </span>
             </div>
           </div>
 

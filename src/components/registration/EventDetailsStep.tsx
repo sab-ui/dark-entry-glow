@@ -7,7 +7,7 @@ const details = [
 ];
 
 export const EventDetailsStep = ({ onNext, onBack }: { onNext: () => void; onBack: () => void }) => (
-  <StepShell step={6} total={7} title="Lock it in." subtitle="Memorise this. No excuses." onBack={onBack} onNext={onNext} nextLabel="Confirm Entry">
+  <StepShell step={6} total={8} title="Lock it in." subtitle="Memorise this. No excuses." onBack={onBack} onNext={onNext} nextLabel="Proceed to Payment">
     <div className="flex flex-col gap-2.5">
       {details.map(({ icon, label, value, sub, color, big }, i) => (
         <div key={label}

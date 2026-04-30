@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const GirlsOfferStep = ({ data, update, onNext, onBack }: Props) => (
-  <StepShell step={5} total={7} title="Are you a girl?" subtitle="Unlimited shots — first 2 hours. 🥃" onBack={onBack} onNext={onNext} nextDisabled={data.girlsOffer === null}>
+  <StepShell step={5} total={8} title="Are you a girl?" subtitle="Unlimited shots — first 2 hours. 🥃" onBack={onBack} onNext={onNext} nextDisabled={data.girlsOffer === null}>
     <div className="flex flex-col gap-3">
 
       {/* YES */}

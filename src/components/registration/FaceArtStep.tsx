@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const FaceArtStep = ({ data, update, onNext, onBack }: Props) => (
-  <StepShell step={3} total={7} title="Face art?" subtitle="Step into your alter ego." onBack={onBack} onNext={onNext} nextDisabled={!data.faceArt}>
+  <StepShell step={3} total={8} title="Face art?" subtitle="Step into your alter ego." onBack={onBack} onNext={onNext} nextDisabled={!data.faceArt}>
     <div className="flex flex-col gap-2.5">
       {opts.map(({ value, emoji, label, sub, color }) => {
         const active = data.faceArt === value;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { initialData, RegistrationData } from "@/lib/registration-types";
+import { initialData, RegistrationData, getEntryFee } from "@/lib/registration-types";
 import { EntryScreen } from "@/components/registration/EntryScreen";
 import { IdentityStep } from "@/components/registration/IdentityStep";
 import { VibeStep } from "@/components/registration/VibeStep";
@@ -9,10 +9,11 @@ import { FaceArtStep } from "@/components/registration/FaceArtStep";
 import { EntryTypeStep } from "@/components/registration/EntryTypeStep";
 import { GirlsOfferStep } from "@/components/registration/GirlsOfferStep";
 import { EventDetailsStep } from "@/components/registration/EventDetailsStep";
+import { PaymentStep } from "@/components/registration/PaymentStep";
 import { FinalCTAStep } from "@/components/registration/FinalCTAStep";
 
 const Index = () => {
-  const [step, setStep] = useState(0); // 0 = entry; 1-7 = steps
+  const [step, setStep] = useState(0);
   const [data, setData] = useState<RegistrationData>(initialData);
   const [submitting, setSubmitting] = useState(false);
   const [registrationId, setRegistrationId] = useState<string>("");
@@ -22,6 +23,7 @@ const Index = () => {
   const submit = async () => {
     setSubmitting(true);
     const id = crypto.randomUUID();
+    const fee = getEntryFee(data);
     const { error } = await supabase.from("registrations").insert({
       id,
       name: data.name.trim(),
@@ -32,6 +34,8 @@ const Index = () => {
       entry_type: data.entryType as string,
       group_size: data.entryType === "Group" ? data.groupSize : null,
       girls_offer: data.girlsOffer === true,
+      payment_screenshot_url: data.paymentScreenshot || null,
+      payment_status: fee.free ? "free" : "pending",
     });
     setSubmitting(false);
     if (error) {
@@ -40,7 +44,7 @@ const Index = () => {
     }
     setRegistrationId(id);
     toast.success("Welcome to the dark side 🖤");
-    setStep(7);
+    setStep(8);
   };
 
   return (
@@ -51,8 +55,9 @@ const Index = () => {
       {step === 3 && <FaceArtStep data={data} update={update} onBack={() => setStep(2)} onNext={() => setStep(4)} />}
       {step === 4 && <EntryTypeStep data={data} update={update} onBack={() => setStep(3)} onNext={() => setStep(5)} />}
       {step === 5 && <GirlsOfferStep data={data} update={update} onBack={() => setStep(4)} onNext={() => setStep(6)} />}
-      {step === 6 && <EventDetailsStep onBack={() => setStep(5)} onNext={submit} />}
-      {step === 7 && <FinalCTAStep data={data} registrationId={registrationId} onBack={() => setStep(6)} />}
+      {step === 6 && <EventDetailsStep onBack={() => setStep(5)} onNext={() => setStep(7)} />}
+      {step === 7 && <PaymentStep data={data} update={update} onBack={() => setStep(6)} onNext={submit} />}
+      {step === 8 && <FinalCTAStep data={data} registrationId={registrationId} onBack={() => setStep(7)} />}
 
       {submitting && (
         <div className="fixed inset-0 bg-background/80 backdrop-blur-sm grid place-items-center z-50">

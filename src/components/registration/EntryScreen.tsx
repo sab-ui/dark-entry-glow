@@ -39,16 +39,17 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
       </div>
 
       {/* Partner logos – centre of nav */}
-      <div className="flex items-center gap-3 sm:gap-5">
-        <span className="hidden sm:block text-[7px] uppercase tracking-[0.4em] text-white/30">Presented by</span>
-        {/* Eventora – needs white bg since logo has cream/navy colors */}
-        <div className="bg-white rounded px-2 py-1">
-          <img src="/logo-eventora.png" alt="Eventora" className="h-6 sm:h-7 w-auto object-contain" />
+      <div className="flex items-center gap-4 sm:gap-6">
+        <span className="hidden sm:block text-[7px] uppercase tracking-[0.4em] text-white/40">Presented by</span>
+        <div className="w-px h-5 bg-white/10 hidden sm:block" />
+        {/* Eventora – white pill so navy/gold colors show */}
+        <div className="bg-white rounded-sm px-2.5 py-1.5 flex items-center">
+          <img src="/logo-eventora.png" alt="Eventora" className="h-7 sm:h-8 w-auto object-contain" />
         </div>
-        {/* Versova Vibes – white on black, show as-is */}
+        <div className="w-px h-5 bg-white/10" />
+        {/* Versova Vibes – black bg with white logo */}
         <img src="/logo-versova.jpg" alt="Versova Vibes Cafe"
-          className="h-8 sm:h-10 w-auto object-contain rounded"
-          style={{ filter: "brightness(1) contrast(1)" }} />
+          className="h-9 sm:h-11 w-auto object-contain rounded-sm" />
       </div>
 
       {/* Register Now – desktop */}

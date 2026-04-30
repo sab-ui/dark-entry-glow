@@ -158,6 +158,21 @@ export const EntryScreen = ({ onEnter }: { onEnter: () => void }) => (
         <span className="text-[9px] tracking-[0.4em] text-primary/50 uppercase">For Reservations: </span>
         <span className="text-[9px] text-white/35 font-mono">+91 96121 80626</span>
       </div>
+
+      {/* Partner logos */}
+      <div className="border-t border-white/[0.05] py-3 px-6 flex items-center justify-center gap-6 sm:gap-10">
+        <span className="text-[8px] uppercase tracking-[0.4em] text-white/20 shrink-0">Presented by</span>
+        <div className="flex items-center gap-6 sm:gap-10">
+          {/* Eventora – light bg so invert to fit dark theme */}
+          <img src="/logo-eventora.png" alt="Eventora"
+            className="h-7 sm:h-9 w-auto object-contain"
+            style={{ filter: "brightness(0) invert(1) opacity(0.55)" }} />
+          {/* Versova Vibes – white on black, just reduce opacity */}
+          <img src="/logo-versova.jpg" alt="Versova Vibes Cafe"
+            className="h-7 sm:h-9 w-auto object-contain rounded"
+            style={{ filter: "opacity(0.55)" }} />
+        </div>
+      </div>
     </div>
   </div>
 );

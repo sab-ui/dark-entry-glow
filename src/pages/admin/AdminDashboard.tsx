@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
   const [rows, setRows] = useState<Reg[]>([]);
   const [q, setQ] = useState("");
-  const [filter, setFilter] = useState<"all" | "Solo" | "Couple" | "Group" | "girls" | "pending_payment">("all");
+  const [filter, setFilter] = useState<"all" | "Single" | "Couple" | "Group" | "girls" | "pending_payment">("all");
   const [busy, setBusy] = useState(true);
   const [scanning, setScanning] = useState(false);
   const [ssPreview, setSsPreview] = useState<string | null>(null);
@@ -60,7 +60,7 @@ const AdminDashboard = () => {
 
   const stats = useMemo(() => ({
     total: rows.length,
-    solo: rows.filter((r) => r.entry_type === "Solo").length,
+    solo: rows.filter((r) => r.entry_type === "Single").length,
     couple: rows.filter((r) => r.entry_type === "Couple").length,
     group: rows.filter((r) => r.entry_type === "Group").length,
     girls: rows.filter((r) => r.girls_offer).length,
@@ -165,7 +165,7 @@ const AdminDashboard = () => {
 
       <section className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-8">
         <Stat label="Total" value={stats.total} icon={Users} accent="primary" />
-        <Stat label="Solo" value={stats.solo} icon={User} accent="secondary" />
+        <Stat label="Single" value={stats.solo} icon={User} accent="secondary" />
         <Stat label="Couple" value={stats.couple} icon={Users} accent="secondary" />
         <Stat label="Group" value={stats.group} icon={UsersRound} accent="secondary" />
         <Stat label="Girls" value={stats.girls} icon={Sparkles} accent="accent" />
@@ -183,7 +183,7 @@ const AdminDashboard = () => {
           <Tabs value={filter} onValueChange={(v) => setFilter(v as any)}>
             <TabsList className="bg-muted flex-wrap h-auto">
               <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="Solo">Solo</TabsTrigger>
+              <TabsTrigger value="Single">Single</TabsTrigger>
               <TabsTrigger value="Couple">Couple</TabsTrigger>
               <TabsTrigger value="Group">Group</TabsTrigger>
               <TabsTrigger value="girls">Girls</TabsTrigger>

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Minus, Plus } from "lucide-react";
 
 const types: { name: EntryType; emoji: string; sub: string; color: string }[] = [
-  { name: "Solo",   emoji: "🕶",   sub: "Just me.",            color: "hsl(335 100% 50%)" },
+  { name: "Single",   emoji: "🕶",   sub: "Just me.",            color: "hsl(335 100% 50%)" },
   { name: "Couple", emoji: "🖤🤍", sub: "Two vibes, one night.", color: "hsl(272 100% 55%)" },
   { name: "Group",  emoji: "👥",   sub: "The whole crew.",      color: "hsl(48 100% 52%)" },
 ];

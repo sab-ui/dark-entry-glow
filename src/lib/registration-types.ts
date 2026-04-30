@@ -1,6 +1,6 @@
 export type Vibe = "Wild" | "Mysterious" | "Dramatic" | "Unpredictable";
 export type FaceArt = "Yes" | "Maybe" | "No";
-export type EntryType = "Solo" | "Couple" | "Group";
+export type EntryType = "Single" | "Couple" | "Group";
 
 export interface RegistrationData {
   name: string;
@@ -27,14 +27,14 @@ export const initialData: RegistrationData = {
 };
 
 export function getEntryFee(data: RegistrationData): { amount: number; label: string; free: boolean } {
-  if (data.entryType === "Solo" && data.girlsOffer === true) return { amount: 0, label: "FREE", free: true };
+  if (data.entryType === "Single" && data.girlsOffer === true) return { amount: 0, label: "FREE", free: true };
   if (data.entryType === "Couple") return { amount: 299, label: "₹299", free: false };
   if (data.entryType === "Group") return { amount: 399 * data.groupSize, label: `₹${399 * data.groupSize}`, free: false };
   return { amount: 399, label: "₹399", free: false };
 }
 
 export function getEntryLabel(data: RegistrationData): string {
-  if (data.entryType === "Solo") return data.girlsOffer === true ? "Single Female" : "Single Male";
+  if (data.entryType === "Single") return data.girlsOffer === true ? "Single Female" : "Single Male";
   if (data.entryType === "Couple") return "Couple";
   if (data.entryType === "Group") return `Group of ${data.groupSize}`;
   return data.entryType;
